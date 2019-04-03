@@ -1,10 +1,31 @@
 {
   "AWSEBDockerrunVersion": 2,
-  "containerDefinitions":  [
+  "containerDefinitions": [
     {
       "name": "client",
       "image": "dideex/complex-client",
-      "hostname": "client"
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "dideex/complex-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "dideex/complex-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "dideex/complex-nginx",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [{ "hostPort": 80, "containerPort": 80 }],
+      "links": ["client", "server"]
     }
   ]
 }
