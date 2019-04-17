@@ -11,6 +11,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
+            <h1>My new create react app title</h1>
             <img src={logo} className="App-logo" alt="logo" />
           </header>
           <div>
