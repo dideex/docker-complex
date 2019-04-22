@@ -10,14 +10,14 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '3030:80'
+      - '3050:80'
   api:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
     volumes:
       - /app/node_modules
-      - /c/complex/server:/app
+      - ./server:/app
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -32,14 +32,14 @@ services:
       context: ./client
     volumes:
       - /app/node_modules
-      - /c/complex/client:/app
+      - ./client:/app
   worker:
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
       - /app/node_modules
-      - /c/complex/worker:/app
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
+      - ./worker:/app
