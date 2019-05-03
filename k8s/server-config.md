@@ -40,3 +40,6 @@ kubectl describe [pods|services|deployments]
 
 kubectl create secret generic pgpassword --from-literal PGPASSWORD=postgres
   _add secrets env_
+
+kubectl set image deployment/client-deployment client=dideex/complex-client:title
+  _update existing pod from hub with new version_
